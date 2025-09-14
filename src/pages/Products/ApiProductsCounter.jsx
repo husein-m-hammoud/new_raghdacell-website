@@ -10,6 +10,7 @@ import {
   UnavvailablePopup,
 } from "../../components";
 import { NavLink } from "react-router-dom";
+import { calculatePrice } from "../../utils/utils";
 
 import { fileUrl, useFETCH, usePOST } from "../../Tools/APIs";
 import { useEffect, useState } from "react";
@@ -118,7 +119,7 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
     }
 
     setIsLoading(true);
-    handleSubmit(`automated/get/packages`, goToOrders);
+    handleSubmit(`automated/get/packages`, "/Orders");
     setIsLoading(false);
   };
   const validateRequirements = (requirements, formData, language = "en") => {
@@ -145,15 +146,6 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
     return errors;
   };
 
-  const calculatePrice = (price = null, percentage = null) => {
-    if (percentage <= 0 || percentage == undefined) {
-      return price;
-    }
-    let newPrice = price * (1 + percentage / 100);
-
-    return newPrice;
-  };
-
   useEffect(() => {
     if (dataPlayer?.data?.data?.username) {
       setCheckNumber(formData?.player_number);
@@ -177,7 +169,7 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
     setFormData({
       ...formData,
       qty: dataAll?.minimum_qut,
-      product_id: dataAll?.package_id,
+      package_id: dataAll?.package_id,
       product_reference: dataAll?.product_reference,
     });
   }, [dataAll]);
@@ -285,11 +277,13 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
                           (profile?.type === "COMPANY"
                             ? +calculatePrice(
                                 dataAll?.company_price,
-                                dataAll?.company_percentage
+                                dataAll?.company_percentage,
+                                dataAll?.product_percentage
                               )
                             : +calculatePrice(
                                 dataAll?.user_price,
-                                dataAll?.user_percentage
+                                dataAll?.user_percentage,
+                                dataAll?.product_percentage
                               )) || 0
                       }
                     />
@@ -345,11 +339,13 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
                     (profile?.type === "COMPANY"
                       ? +calculatePrice(
                           dataAll?.company_price,
-                          dataAll?.company_percentage
+                          dataAll?.company_percentage,
+                          dataAll?.product_percentage
                         )
                       : +calculatePrice(
                           dataAll?.user_price,
-                          dataAll?.user_percentage
+                          dataAll?.user_percentage,
+                          dataAll?.product_percentage
                         )) || 0
                 }
               />

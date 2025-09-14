@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore ,{ Pagination ,Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { fileUrl, useFETCH } from "../../Tools/APIs";
+import { localFileUrl, useFETCH } from "../../Tools/APIs";
 import Loading from "../../Tools/Loading";
 SwiperCore.use([Autoplay, Pagination]);
 
@@ -27,7 +27,7 @@ const Hero = () => {
           {data?.data.data.map((e) => (
             <SwiperSlide key={e.id}>
               <img
-                src={fileUrl + e.image}
+                src={localFileUrl + e.image}
                 alt=""
                 className=" max-h-[75vh] max-sm:max-h-[40vh] w-full object-fill"
               />

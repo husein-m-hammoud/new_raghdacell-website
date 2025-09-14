@@ -10,6 +10,8 @@ import {
 import { fileUrl, useFETCH, usePOST } from "../../Tools/APIs";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
+import { calculatePrice } from "../../utils/utils";
+
 const ProductsTwo = () => {
   const { content, showPopUp, setShowPopUp, profile } = useContextTranslate();
   const { id } = useParams();
@@ -34,15 +36,15 @@ const ProductsTwo = () => {
   } = usePOST({});
   const handleSubmitMain = (e) => {
     e.preventDefault();
-    var goToOrders = '/Orders';
+    var goToOrders = "/Orders";
     if (dataAll?.th_party_api_id) {
       if (
         dataPlayer?.data?.data?.username &&
         formData?.player_number === checkNumber
       ) {
         handleSubmit(
-          `orders?local=${localStorage.getItem("language")}&player_name=` +
-            dataPlayer?.data?.data?.username,goToOrders
+          `automated/get/packages?player_name=${dataPlayer?.data?.data?.username}`,
+          goToOrders
         );
       } else {
         setError(
@@ -58,7 +60,7 @@ const ProductsTwo = () => {
           : `يجب أن تكون الكمية أكبر أو تساوي ${dataAll?.minimum_qut}`
       );
     } else {
-      handleSubmit(`orders?local=${localStorage.getItem("language")}`,goToOrders);
+      handleSubmit(`automated/get/packages`, goToOrders);
     }
   };
   useEffect(() => {
@@ -119,8 +121,14 @@ const ProductsTwo = () => {
                       number={
                         formData?.quantity *
                           (profile?.type === "COMPANY"
-                            ? +dataAll?.company_price
-                            : +dataAll?.user_price) || 0
+                            ? +calculatePrice(
+                                dataAll?.company_price,
+                                dataAll?.product_percentage
+                              )
+                            : +calculatePrice(
+                                dataAll?.user_price,
+                                dataAll?.product_percentage
+                              )) || 0
                       }
                     />
                   </p>
@@ -217,8 +225,14 @@ const ProductsTwo = () => {
                 number={
                   formData?.quantity *
                     (profile?.type === "COMPANY"
-                      ? +dataAll?.company_price
-                      : +dataAll?.user_price) || 0
+                      ? +calculatePrice(
+                          dataAll?.company_price,
+                          dataAll?.product_percentage
+                        )
+                      : +calculatePrice(
+                          dataAll?.user_price,
+                          dataAll?.product_percentage
+                        )) || 0
                 }
               />
             </p>

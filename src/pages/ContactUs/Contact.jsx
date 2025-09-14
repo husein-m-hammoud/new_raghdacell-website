@@ -3,7 +3,7 @@ import { Container, Loading, Title, TitleTwo } from "../../components";
 import email from "../../images/Icon zocial-email.png";
 import phone from "../../images/Icon awesome-phone-alt.png";
 import { BsInstagram, BsWhatsapp, BsFacebook } from "react-icons/bs";
-import tiktok from "../../images/tiktok.webp";
+import tiktok from "../../images/tiktok.png";
 import { ImLocation } from "react-icons/im";
 import { useContextTranslate } from "../../Context/ContextAPI";
 import { useFETCH, usePOST } from "../../Tools/APIs";

@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { Footer, NavBar } from "./layout/index";
 import Swal from "sweetalert2";
 import { onMessage } from "firebase/messaging";
+import { fetchParentUserData } from "./utils/fetchParentUserData";
 
 import {
   AboutUs,
@@ -43,6 +44,47 @@ import { useContextTranslate } from "./Context/ContextAPI";
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 const App = () => {
+  (async () => {
+    const websiteInfo = await fetchParentUserData();
+    console.log({ websiteInfo });
+    if (websiteInfo) {
+      document.documentElement.style.setProperty(
+        "--primary-color",
+        websiteInfo.primary_color
+      );
+      document.documentElement.style.setProperty(
+        "--secondary-color",
+        websiteInfo.secondary_color
+      );
+
+      // Set logo image
+      const logoElements = document.getElementsByClassName("site-logo");
+      if (logoElements.length > 0) {
+        Array.from(logoElements).forEach((el) => {
+          el.src = websiteInfo.logo_url;
+          if (websiteInfo.logo_width && el.classList.contains("header-logo")) {
+            el.style.width = websiteInfo.logo_width;
+          }
+        });
+      }
+
+      // Set body background image
+    if (websiteInfo.body_bg_image) {
+        document.body.style.backgroundImage = `url('${websiteInfo.body_bg_image}')`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
+    }
+
+    // Set footer background image
+    const footer = document.querySelector("footer");
+    if (footer && websiteInfo.footer_bg_image) {
+        footer.style.backgroundImage = `url('${websiteInfo.footer_bg_image}')`;
+        footer.style.backgroundSize = "cover";
+        footer.style.backgroundRepeat = "no-repeat";
+    }
+    }
+  })();
+
   const { getProfile, setGetProfile } = useContextTranslate();
   const { pathname } = useLocation();
   useEffect(() => {
@@ -110,18 +152,18 @@ const App = () => {
   }
 
   useEffect(() => {
-    if(!isIOS) {
-    console.log("🔄 Checking Notification Permissions...");
+    if (!isIOS) {
+      console.log("🔄 Checking Notification Permissions...");
 
-    Notification.requestPermission()
-      .then((permission) => {
-        if (permission === "granted") {
-          console.log("✅ Notification Permission Granted");
-        } else {
-          console.warn("🚫 Notification Permission Denied");
-        }
-      })
-      .catch((err) => console.error("🚨 Error requesting permission:", err));
+      Notification.requestPermission()
+        .then((permission) => {
+          if (permission === "granted") {
+            console.log("✅ Notification Permission Granted");
+          } else {
+            console.warn("🚫 Notification Permission Denied");
+          }
+        })
+        .catch((err) => console.error("🚨 Error requesting permission:", err));
     }
   }, []);
 

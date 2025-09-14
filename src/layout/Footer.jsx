@@ -1,6 +1,6 @@
 import logo from "../images/IMG-20230702-WA0052-removebg.png";
-import { BsInstagram, BsWhatsapp, BsFacebook } from "react-icons/bs";
-import tiktok from "../images/tiktok.webp";
+import { BsInstagram, BsWhatsapp, BsFacebook, BsTiktok } from "react-icons/bs";
+import tiktok from "../images/tiktok.png";
 import icr from "../images/Group 226.png";
 import { Link } from "react-router-dom";
 import { Container } from "../components";
@@ -20,7 +20,8 @@ const Footer = () => {
           <div className="flex justify-between max-sm:flex-col items-center">
             <div className=" ">
               <div>
-                <img src={logo} alt="" className="mx-auto  w-[250px]" />
+                {/* <img src={logo} alt="" className="mx-auto  w-[250px]" /> */}
+                 <img   alt="Logo" className="mx-auto  w-[250px] my-5 site-logo"   />
               </div>
               <div className="-mt-5  mx-auto px-4 w-full">
                 <div className="icons  flex  justify-center gap-2 py-3 flex-wrap">
@@ -40,6 +41,7 @@ const Footer = () => {
 
                   <a href={dataAll?.tiktok} target="_blank">
                     <img src={tiktok} alt="" />
+                    
                   </a>
                 </div>
               </div>

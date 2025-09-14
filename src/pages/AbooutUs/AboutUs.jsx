@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import React, { useEffect, useState } from 'react';
 
-import { fileUrl, useFETCH } from "../../Tools/APIs";
+import { localFileUrl, useFETCH } from "../../Tools/APIs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import Loading from "../../Tools/Loading";
@@ -36,7 +36,7 @@ const AboutUs = () => {
           {dataAll?.about_us_images.map((e) => (
             <SwiperSlide key={e.id}>
               <img
-                src={fileUrl + e.image}
+                src={localFileUrl + e.image}
                 alt=""
                 className="w-full h-full rounded-xl "
               />

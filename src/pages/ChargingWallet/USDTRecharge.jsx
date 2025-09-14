@@ -133,7 +133,7 @@ const USDTRecharge = () => {
       {/* ✅ Modal-style container for QR, address, amount */}
       {walletAddress && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-          <div class="bg-white rounded-3xl p-6 text-center w-[95%] md:w-[40%] mx-auto">
+          <div className="bg-white rounded-3xl p-6 text-center w-[95%] md:w-[40%] mx-auto">
             <h4 className="text-lg font-semibold mb-3">{content.SendUSDTTo}</h4>
 
             <CopyBox

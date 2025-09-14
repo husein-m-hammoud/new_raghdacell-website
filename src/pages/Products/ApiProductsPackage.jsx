@@ -12,6 +12,7 @@ import {
 import { fileUrl, useFETCH, usePOST } from "../../Tools/APIs";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
+import { calculatePrice } from "../../utils/utils";
 
 const ApiProductsPackage = () => {
   const { content, showPopUp, setShowPopUp, profile } = useContextTranslate();
@@ -31,13 +32,6 @@ const ApiProductsPackage = () => {
   const dataAll = data?.data.data;
   console.log({ dataAll });
 
-  const calculatePrice = (price = null, percentage = null) => {
-    if (percentage <= 0 || percentage == undefined) {
-      return price;
-    }
-    const newPrice = price * (1 + percentage / 100);
-    return newPrice;
-  };
   const notShowInPopup = [
     "package_id",
     "qty",
@@ -143,7 +137,7 @@ const ApiProductsPackage = () => {
     setFormData({
       ...formData,
       qty: dataAll?.minimum_qut,
-      product_id: dataAll?.id,
+      package_id: dataAll?.id,
       product_reference: dataAll?.product_reference,
     });
   }, [dataAll]);
@@ -249,11 +243,13 @@ const ApiProductsPackage = () => {
                         (profile?.type === "COMPANY"
                           ? +calculatePrice(
                               dataAll?.company_price,
-                              dataAll?.company_percentage
+                              dataAll?.company_percentage,
+                              dataAll?.product_percentage
                             )
                           : +calculatePrice(
                               dataAll?.user_price,
-                              dataAll?.user_percentage
+                              dataAll?.user_percentage,
+                              dataAll?.product_percentage
                             )) || 0
                     }
                   />

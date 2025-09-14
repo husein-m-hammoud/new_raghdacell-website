@@ -8,6 +8,7 @@ import { useContextTranslate } from "../../../Context/ContextAPI";
 import { Col, Row } from "../../../Grid-system";
 import { useParams } from "react-router-dom";
 import { fileUrl, useFETCH, useFilter } from "../../../Tools/APIs";
+import { calculatePrice } from "../../../utils/utils";
 
 const SecProductsOne = ({ number = 1 }) => {
   const { content, profile } = useContextTranslate();
@@ -19,16 +20,6 @@ const SecProductsOne = ({ number = 1 }) => {
     }`
   );
 
-  const calculatePrice = (price = null, percentage = null) => {
-    console.log(price, percentage, "percentage");
-    if (percentage <= 0 || percentage == undefined) {
-      return price;
-    }
-    const newPrice = price * (1 + percentage / 100);
-    console.log(newPrice, "percentage");
-
-    return newPrice;
-  };
   return (
     <div className="py-3">
       <div>
@@ -95,12 +86,17 @@ const SecProductsOne = ({ number = 1 }) => {
                         ? profile?.type === "COMPANY"
                           ? calculatePrice(
                               e.company_price,
-                              e.company_percentage
+                              e.company_percentage,
+                              e.product_percentage
                             )
-                          : calculatePrice(e.user_price, e.user_percentage)
+                          : calculatePrice(
+                              e.user_price,
+                              e.user_percentage,
+                              e.product_percentage
+                            )
                         : profile?.type === "COMPANY"
-                        ? e.company_price
-                        : e.user_price
+                        ? calculatePrice(e.company_price, e.product_percentage)
+                        : calculatePrice(e.user_price, e.product_percentage)
                     }
                   />
                 </Col>

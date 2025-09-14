@@ -74,19 +74,7 @@ const UserP = () => {
                   {content.ChargingTheWallet}
                 </div>
               </NavLink>
-              {profile?.type === "COMPANY" && (
-                <NavLink
-                  to="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsModalOpen(true);
-                  }}
-                >
-                  <div className="px-3 py-2 hover:bg-Pink mb-1 hover:text-white rounded-xl p-1 font-semibold bg-white text-Pink ">
-                    {content.Token}
-                  </div>
-                </NavLink>
-              )}
+          
               <NavLink to="shipping-payments">
                 <div className="px-3 py-2 hover:bg-Pink mb-1 hover:text-white rounded-xl p-1 font-semibold">
                   {content.ShippingPayments}

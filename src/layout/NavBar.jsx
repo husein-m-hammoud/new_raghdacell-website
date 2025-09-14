@@ -27,14 +27,15 @@ const NavBar = () => {
       locale: profile?.locale,
     });
     setCurrency(profile?.currency === "USD");
-  }, [pathname,profile]);
+  }, [pathname, profile]);
   return (
     <div ref={mouse}>
-      <nav className="shadow-md sticky top-0 left-0 z-30 w-full bg-white max-sm:hidden">
+      <nav className="shadow-md sticky top-0 left-0 z-30 w-full bg-white max-sm:hidden py-2">
         <Container>
           <div className="flex justify-between items-center gap-2 ">
-            <Link to="/" className=" max-md:py-2 max-sm:order-1 ">
-              <img src={logo} alt="" width={75} />
+            <Link to="/" className=" max-md:py-2 max-sm:order-1">
+              {/* <img src={logo} alt="" width={75} /> */}
+              <img className="site-logo header-logo"  alt="Logo" width={85}  />
             </Link>
             <Search />
             <div className="max-md:order-3 ">
@@ -99,7 +100,7 @@ const NavBar = () => {
               )}
             </ul>
 
-            <div style={{ direction: "ltr" }}>
+            {/* <div style={{ direction: "ltr" }}>
               {localStorage.getItem("token") ? (
                 <label className="flex items-center gap-1">
                   <div className="text-Pink font-semibold ">LBP</div>
@@ -124,6 +125,44 @@ const NavBar = () => {
                     checked={currency}
                   />
                   <div className="text-Pink font-semibold ">USD</div>
+                </label>
+              ) : (
+                ""
+              )}
+            </div> */}
+            <div style={{ direction: "ltr" }}>
+              {localStorage.getItem("token") ? (
+                <label className="flex items-center gap-1">
+                  <div className="text-Pink font-semibold">LBP</div>
+                  <Switch
+                    height={15}
+                    uncheckedIcon
+                    checkedIcon
+                    offColor="#cab8b8"
+                    onColor="#cab8b8"
+                    offHandleColor={getComputedStyle(document.documentElement)
+                      .getPropertyValue("--primary-color")
+                      .trim()}
+                    onHandleColor={getComputedStyle(document.documentElement)
+                      .getPropertyValue("--primary-color")
+                      .trim()}
+                    activeBoxShadow={`0 0 2px 3px ${getComputedStyle(
+                      document.documentElement
+                    )
+                      .getPropertyValue("--primary-color")
+                      .trim()}`}
+                    handleDiameter={22}
+                    width={35}
+                    onChange={() => {
+                      setCurrency(profile?.currency === "USD" ? false : true);
+                      setFormData({
+                        currency: profile?.currency === "USD" ? "LBP" : "USD",
+                      });
+                      handleSubmit("change-currency", "", "", true);
+                    }}
+                    checked={currency}
+                  />
+                  <div className="text-Pink font-semibold">USD</div>
                 </label>
               ) : (
                 ""

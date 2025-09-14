@@ -28,6 +28,15 @@ textarea {
     margin-right: auto;
 }
 
+.lds-default div {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color) !important;
+    border-radius: 50%;
+    animation: lds-default 1.2s linear infinite;
+}
+
 
 /* Small */
 
@@ -56,7 +65,7 @@ textarea {
 }
 
 .bg {
-    background-image: url("./images/bg.png");
+    /* background-image: url("./images/bg.png"); */
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -96,12 +105,12 @@ textarea {
 }
 
 a.active {
-    color: #fde047;
+    color: var(--secondary-color) !important;
     font-weight: bold;
 }
 
 .navs a.active div {
-    background: var(--Pink) !important;
+    background: var(--primary-color) !important;
     color: #fff;
 }
 
@@ -144,7 +153,7 @@ a.active {
 }
 
 .icons> :nth-child(2) {
-    background-image: linear-gradient( 45deg, #fdf497 0%, #fdf4fd 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+    background-image: linear-gradient(45deg, #fdf497 0%, #fdf4fd 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
 }
 
 .icons> :nth-child(3) {
@@ -160,7 +169,7 @@ a.active {
 }
 
 footer {
-    background-image: url("./images/pngwing.com\ \(35\).png");
+    /* background-image: url("./images/pngwing.com\ \(35\).png"); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

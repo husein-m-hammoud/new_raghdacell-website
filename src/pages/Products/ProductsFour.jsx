@@ -9,6 +9,7 @@ import {
   TitleTwo,
 } from "../../components";
 import { useEffect, useState } from "react";
+import { calculatePrice } from "../../utils/utils";
 
 const ProductsFour = () => {
   const { content, showPopUp, setShowPopUp, profile } = useContextTranslate();
@@ -28,7 +29,7 @@ const ProductsFour = () => {
   } = usePOST({ product_id: id });
   const handleSubmitMain = (e) => {
     e.preventDefault();
-    var goToOrders = '/Orders';
+    var goToOrders = "/Orders";
 
     if (formData.quantity < dataActive?.[0]?.minimum_qut) {
       setError(
@@ -38,7 +39,7 @@ const ProductsFour = () => {
           : `يجب أن تكون الكمية أكبر أو تساوي ${dataActive?.[0]?.minimum_qut}`
       );
     } else {
-      handleSubmit(`orders?local=${localStorage.getItem("language")}`,goToOrders);
+      handleSubmit(`automated/get/packages`, goToOrders);
     }
   };
   const [active, setActive] = useState("");
@@ -134,8 +135,14 @@ const ProductsFour = () => {
                       number={
                         formData?.quantity *
                           (profile?.type === "COMPANY"
-                            ? +dataActive?.[0]?.company_price
-                            : +dataActive?.[0]?.user_price) || 0
+                            ? +calculatePrice(
+                                dataActive?.[0]?.company_price,
+                                dataActive?.[0]?.product_percentage
+                              )
+                            : +calculatePrice(
+                                dataActive?.[0]?.user_price,
+                                dataActive?.[0]?.product_percentage
+                              )) || 0
                       }
                     />
                   </p>

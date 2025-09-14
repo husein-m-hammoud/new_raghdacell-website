@@ -109,14 +109,14 @@ function TokenModal({ open, onClose, user }) {
 
         <div className="flex justify-between mt-4"></div>
 
-        <label for="message" class="block mb-2">
+        <label for="message" className="block mb-2">
           IP Whitelist
         </label>
         <textarea
           rows={4}
           value={ipWhitelist}
           onChange={(e) => setIpWhitelist(e.target.value)}
-          class="block p-2.5 w-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
+          className="block p-2.5 w-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
           placeholder="Enter one IP per line"
         ></textarea>
 
