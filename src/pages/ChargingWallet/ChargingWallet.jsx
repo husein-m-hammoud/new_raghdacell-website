@@ -87,28 +87,35 @@ const ChargingWallet = () => {
         <TitleTwo title={content.ChargingTheWallet} />
         <div className="w-1/2 max-md:w-full mx-auto my-5 border border-Pink rounded-2xl p-5">
           <Row justify="center" className="gap-2 py-5 text-center mb-10">
-            {profile?.currency === "USD" && (
+            {profile?.currency === "USD" &&
+              (dataAll?.usdt_trc20 || dataAll?.usdt_bep20) && (
+                <PaymentMethodBox
+                  title="USDT"
+                  img={USDT}
+                  active={active}
+                  onClick={() => setActive("USDT")}
+                />
+              )}
+
+            {dataAll?.whish_money_text && (
               <PaymentMethodBox
-                title="USDT"
-                img={USDT}
+                title="Whish Money"
+                img={Money}
                 active={active}
-                onClick={() => setActive("USDT")}
+                value="WHISH_MONEY"
+                onClick={() => setActive("WHISH_MONEY")}
               />
             )}
-            <PaymentMethodBox
-              title="Whish Money"
-              img={Money}
-              active={active}
-              value="WHISH_MONEY"
-              onClick={() => setActive("WHISH_MONEY")}
-            />
-            <PaymentMethodBox
-              title="OMT Pay"
-              img={omt}
-              active={active}
-              value="OMT_PAY"
-              onClick={() => setActive("OMT_PAY")}
-            />
+
+            {dataAll?.omt_pay_text && (
+              <PaymentMethodBox
+                title="OMT Pay"
+                img={omt}
+                active={active}
+                value="OMT_PAY"
+                onClick={() => setActive("OMT_PAY")}
+              />
+            )}
             <PaymentMethodBox
               title="Code"
               img={CODE}
@@ -120,7 +127,7 @@ const ChargingWallet = () => {
 
           {active === "USDT" ? (
             <div className="space-y-5">
-              <USDTRecharge />
+              <USDTRecharge dataAll={dataAll} />
             </div>
           ) : (
             <div className="space-y-5">
@@ -228,7 +235,7 @@ const PaymentMethodBox = ({ title, img, active, onClick, value }) => {
         active === key ? "shadow-lg shadow-Pink" : ""
       } border border-Purple p-1 flex flex-col justify-between cursor-pointer w-[150px] rounded-2xl font-semibold`}
     >
-      <div className={`${title  == 'Code' ? '' : 'w-[60px]'} mx-auto`}>
+      <div className={`${title == "Code" ? "" : "w-[60px]"} mx-auto`}>
         <img src={img} alt={title} className="mx-auto" />
       </div>
       <h6 className="max-sm:text-[16px]">{title}</h6>

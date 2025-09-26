@@ -100,7 +100,7 @@ const ProductsFive = () => {
                                   dataAll?.product_percentage
                                 )
                               : +calculatePrice(
-                                  dataAll?.sec_user_price,
+                                  dataAll?.sec_company_price,
                                   dataAll?.product_percentage
                                 )) || 0
                         }
@@ -117,7 +117,7 @@ const ProductsFive = () => {
                                   dataAll?.product_percentage
                                 )
                               : +calculatePrice(
-                                  dataAll?.user_price,
+                                  dataAll?.company_price,
                                   dataAll?.product_percentage
                                 )) || 0
                         }
@@ -172,7 +172,7 @@ const ProductsFive = () => {
                                   dataAll?.product_percentage
                                 )
                               : +calculatePrice(
-                                  dataAll?.sec_user_price,
+                                  dataAll?.sec_company_price,
                                   dataAll?.product_percentage
                                 )) || 0
                         }
@@ -189,7 +189,7 @@ const ProductsFive = () => {
                                   dataAll?.product_percentage
                                 )
                               : +calculatePrice(
-                                  dataAll?.user_price,
+                                  dataAll?.company_price,
                                   dataAll?.product_percentage
                                 )) || 0
                         }

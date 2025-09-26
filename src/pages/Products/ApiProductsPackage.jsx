@@ -247,8 +247,8 @@ const ApiProductsPackage = () => {
                               dataAll?.product_percentage
                             )
                           : +calculatePrice(
-                              dataAll?.user_price,
-                              dataAll?.user_percentage,
+                              dataAll?.company_price,
+                              dataAll?.company_percentage,
                               dataAll?.product_percentage
                             )) || 0
                     }
@@ -344,8 +344,8 @@ const ApiProductsPackage = () => {
                               dataAll?.company_percentage
                             )
                           : +calculatePrice(
-                              dataAll?.user_price,
-                              dataAll?.user_percentage
+                              dataAll?.company_price,
+                              dataAll?.company_percentage
                             )) || 0
                     }
                   />

@@ -6,7 +6,7 @@ import CopyBox from "./CopyBox"; // adjust path as needed
 import { baseUrl } from "../../Tools/APIs";
 import { useContextTranslate } from "../../Context/ContextAPI";
 
-const USDTRecharge = () => {
+const USDTRecharge = ({ dataAll }) => {
   const { content } = useContextTranslate();
   const [amount, setAmount] = useState("");
   const [network, setNetwork] = useState("trc20");
@@ -113,8 +113,12 @@ const USDTRecharge = () => {
           onChange={(e) => setNetwork(e.target.value)}
           className="outline-none block w-full bg-slate-50 py-3 px-5 rounded-2xl"
         >
-          <option value="trc20">TRC20 (Tron)</option>
-          <option value="bep20">BEP20 (BSC)</option>
+          {dataAll?.usdt_trc20 && (
+            <option value="trc20">TRC20 (Tron)</option>
+          )}
+          {dataAll?.usdt_bep20 && (
+            <option value="bep20">BEP20 (BSC)</option>
+          )}
         </select>
       </div>
 

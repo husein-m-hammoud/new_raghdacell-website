@@ -281,8 +281,8 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
                                 dataAll?.product_percentage
                               )
                             : +calculatePrice(
-                                dataAll?.user_price,
-                                dataAll?.user_percentage,
+                                dataAll?.company_price,
+                                dataAll?.company_percentage,
                                 dataAll?.product_percentage
                               )) || 0
                       }
@@ -343,8 +343,8 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
                           dataAll?.product_percentage
                         )
                       : +calculatePrice(
-                          dataAll?.user_price,
-                          dataAll?.user_percentage,
+                          dataAll?.company_price,
+                          dataAll?.company_percentage,
                           dataAll?.product_percentage
                         )) || 0
                 }

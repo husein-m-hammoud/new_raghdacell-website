@@ -68,20 +68,36 @@ const App = () => {
         });
       }
 
-      // Set body background image
-    if (websiteInfo.body_bg_image) {
-        document.body.style.backgroundImage = `url('${websiteInfo.body_bg_image}')`;
-        document.body.style.backgroundSize = "cover";
-        document.body.style.backgroundRepeat = "no-repeat";
-    }
+      if (websiteInfo.icon_url) {
+        let link =
+          document.querySelector("link[rel='icon']") ||
+          document.createElement("link");
 
-    // Set footer background image
-    const footer = document.querySelector("footer");
-    if (footer && websiteInfo.footer_bg_image) {
+        link.rel = "icon";
+        link.href = websiteInfo.icon_url;
+        document.head.appendChild(link);
+      }
+
+      if (websiteInfo.website_name) {
+        document.title = websiteInfo.website_name;
+      }
+
+      // Set body background image
+      if (websiteInfo.body_bg_image) {
+        document.body.style.backgroundImage = `url('${websiteInfo.body_bg_image}')`;
+        document.body.style.backgroundSize = "contain";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundPosition = "center";
+      }
+
+      // Set footer background image
+      const footer = document.querySelector("footer");
+      if (footer && websiteInfo.footer_bg_image) {
         footer.style.backgroundImage = `url('${websiteInfo.footer_bg_image}')`;
-        footer.style.backgroundSize = "cover";
+        footer.style.backgroundSize = "contain";
         footer.style.backgroundRepeat = "no-repeat";
-    }
+        footer.style.backgroundPosition = "center";
+      }
     }
   })();
 

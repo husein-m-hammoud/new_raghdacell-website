@@ -203,7 +203,7 @@ const NavBar = () => {
                   onClick={() => {
                     setOpen(!open);
                   }}
-                  className=" relative w-10 h-10 border cursor-pointer text-yellow-300 text-xl font-semibold  rounded-full flex items-center  hover:bg-slate-300  justify-center"
+                  className=" relative w-10 h-10 border cursor-pointer text-yellow-300 text-xl font-semibold  rounded-full flex items-center  hover:bg-slate-300  justify-center float-end"
                 >
                   <BsFillBellFill size={30} className="" />
                   <div className="w-4 h-4 rounded-full bg-Pink flex justify-center items-center p-1 absolute -top-1 -right-0 text-white text-sm">
@@ -214,7 +214,7 @@ const NavBar = () => {
             </Col>
             <Col sm={5}>
               <Link to="/" className="">
-                <img src={logo} alt="" width={75} className="mx-auto" />
+                <img alt="" width={75} className="mx-auto site-logo header-logo" />
               </Link>
             </Col>
             <Col sm={5}>

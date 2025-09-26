@@ -135,7 +135,7 @@ const SecProductsOne2 = () => {
                                   dataAll?.product_percentage
                                 )
                               : +calculatePrice(
-                                  dataAll?.user_price,
+                                  dataAll?.company_price,
                                   dataAll?.product_percentage
                                 )) || 0
                         }
@@ -280,7 +280,7 @@ const SecProductsOne2 = () => {
                                   dataAll?.product_percentage
                                 )
                               : +calculatePrice(
-                                  dataAll?.user_price,
+                                  dataAll?.company_price,
                                   dataAll?.product_percentage
                                 )) || 0
                         }

@@ -71,7 +71,7 @@ const SignUp = () => {
         className=" text-black w-full  flex items-center justify-center my-1 "
       >
         <div className="bg-white shadow-md shadow-Pink bg-opacity-50 max-sm:w-full  pb-2 px-3 rounded-md md:w-1/3 w-full m-3">
-          <img src={Img} alt="" width={260} className="mx-auto" />
+          <img  alt="" width={260} className="mx-auto site-logo" />
           <div>
             <h1
               style={{

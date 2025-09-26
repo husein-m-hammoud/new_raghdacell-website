@@ -125,7 +125,7 @@ const ProductsThree = () => {
                                 dataAll?.product_percentage
                               )
                             : +calculatePrice(
-                                dataAll?.user_price,
+                                dataAll?.company_price,
                                 dataAll?.product_percentage
                               )) || 0
                       }
@@ -259,7 +259,7 @@ const ProductsThree = () => {
                                 dataAll?.product_percentage
                               )
                             : +calculatePrice(
-                                dataAll?.user_price,
+                                dataAll?.company_price,
                                 dataAll?.product_percentage
                               )) || 0
                       }

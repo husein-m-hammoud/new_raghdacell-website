@@ -140,7 +140,7 @@ const ProductsFour = () => {
                                 dataActive?.[0]?.product_percentage
                               )
                             : +calculatePrice(
-                                dataActive?.[0]?.user_price,
+                                dataActive?.[0]?.company_price,
                                 dataActive?.[0]?.product_percentage
                               )) || 0
                       }
@@ -193,7 +193,7 @@ const ProductsFour = () => {
                         formData?.quantity *
                           (profile?.type === "COMPANY"
                             ? +dataActive?.[0]?.company_price
-                            : +dataActive?.[0]?.user_price) || 0
+                            : +dataActive?.[0]?.company_price) || 0
                       }
                     />
                   </p>

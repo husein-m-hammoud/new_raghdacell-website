@@ -90,13 +90,13 @@ const SecProductsOne = ({ number = 1 }) => {
                               e.product_percentage
                             )
                           : calculatePrice(
-                              e.user_price,
-                              e.user_percentage,
+                              e.company_price,
+                              e.company_percentage,
                               e.product_percentage
                             )
                         : profile?.type === "COMPANY"
                         ? calculatePrice(e.company_price, e.product_percentage)
-                        : calculatePrice(e.user_price, e.product_percentage)
+                        : calculatePrice(e.company_price, e.product_percentage)
                     }
                   />
                 </Col>
