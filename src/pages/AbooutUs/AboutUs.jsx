@@ -33,7 +33,7 @@ const AboutUs = () => {
           className="mySwiper h-[75vh] max-sm:max-h-[40vh]"
           style={{ direction: "ltr" }}
         >
-          {dataAll?.about_us_images.map((e) => (
+          {dataAll?.about_us_images && dataAll?.about_us_images.map((e) => (
             <SwiperSlide key={e.id}>
               <img
                 src={localFileUrl + e.image}

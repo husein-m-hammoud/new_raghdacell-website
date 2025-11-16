@@ -57,7 +57,7 @@ const Code = () => {
     >
       <div className="bg-white shadow-md shadow-Pink  bg-opacity-50 max-sm:w-full ma py-5 rounded-2xl md:w-1/3 w-full m-3">
         <div className="flex justify-center flex-col items-center h-full  text-center  mx-auto ">
-          <img src={Img} alt="" width={260} />
+          <img className="site-logo" alt="" width={260} />
           <div>
             <h1 className="font-semibold text-4xl">
               {content.verificationCode}

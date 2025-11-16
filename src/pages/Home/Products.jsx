@@ -16,7 +16,7 @@ const Products = () => {
     useContextTranslate();
     useEffect(() => {
       setRelod(!relod);
-      setPage(15)
+      setPage(1)
       }, []);
     
   return (
@@ -26,7 +26,7 @@ const Products = () => {
         <InfiniteScroll
           className="!overflow-hidden"
           dataLength={products?.length}
-          next={() => setPage(page + 15)}
+          next={() => setPage(page + 1)}
           refreshFunction={() => console.log("1")}
           hasMore={dataProducts?.data.data.length > products?.length}
           loader={

@@ -22,6 +22,7 @@ const MyComponent = () => {
   const { data, isLoading } = useFETCH(
     `products?paginate=1&local=${localStorage.getItem("language")}&page=${page}`
   );
+  
   useEffect(() => {
     if (data?.data.data.data.length > 0) {
       setProducts((prevProducts) => [...prevProducts, ...data?.data.data.data]);

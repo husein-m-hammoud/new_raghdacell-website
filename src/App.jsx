@@ -65,6 +65,9 @@ const App = () => {
           if (websiteInfo.logo_width && el.classList.contains("header-logo")) {
             el.style.width = websiteInfo.logo_width;
           }
+          if (websiteInfo.logo_mobile_width && el.classList.contains("mobile-logo")) {
+            el.style.width = websiteInfo.logo_mobile_width;
+          }
         });
       }
 

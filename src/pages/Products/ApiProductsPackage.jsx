@@ -341,11 +341,13 @@ const ApiProductsPackage = () => {
                         (profile?.type === "COMPANY"
                           ? +calculatePrice(
                               dataAll?.company_price,
-                              dataAll?.company_percentage
+                              dataAll?.company_percentage,
+                              dataAll?.product_percentage
                             )
                           : +calculatePrice(
                               dataAll?.company_price,
-                              dataAll?.company_percentage
+                              dataAll?.company_percentage,
+                              dataAll?.product_percentage
                             )) || 0
                     }
                   />
