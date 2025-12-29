@@ -149,7 +149,9 @@
         "MustPayExactAmount": "You must pay this exact amount. Do not pay more or less.",
         "ExactAmountToPay": "Exact amount to pay",
         "Close": "Close",
-        "Done": "Done"
+        "Done": "Done",
+        "DirectRecharge": "Direct Recharge",
+        "Email": "Email"
     },
     "ar": {
         "Yes": "نعم",
@@ -301,6 +303,8 @@
         "MustPayExactAmount": "يجب أن تدفع هذا المبلغ بالضبط. لا تدفع أكثر أو أقل.",
         "ExactAmountToPay": "المبلغ المطلوب دفعه بالضبط",
         "Close": "إغلاق",
-        "Done": "تم"
+        "Done": "تم",
+        "DirectRecharge": "شحن مباشرة",
+        "Email": "البريد الإلكتروني"
     }
 }

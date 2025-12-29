@@ -162,10 +162,13 @@ const Request = () => {
                         <Col>
                           <div className="flex gap-2 mb-2">
                             <div className="font-semibold text-Pink">
-                              {content.E_mailOrPhoneNumber}:
+                              {dataAll.email_or_phone_number.includes("@")
+                                ? content.Email
+                                : content.PhoneNumber}
+                              :
                             </div>
-                            <div className={`  font-semibold`}>
-                              {dataAll?.email_or_phone_number}
+                            <div className="font-semibold">
+                              {dataAll.email_or_phone_number}
                             </div>
                           </div>
                         </Col>
@@ -258,7 +261,7 @@ const Request = () => {
                           </div>
                         </Col>
                       )}
-                    
+
                     {dataAll?.q && (
                       <Col>
                         <div className="flex gap-2 mb-2">

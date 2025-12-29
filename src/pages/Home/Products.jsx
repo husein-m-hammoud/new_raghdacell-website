@@ -26,9 +26,9 @@ const Products = () => {
         <InfiniteScroll
           className="!overflow-hidden"
           dataLength={products?.length}
-          next={() => setPage(page + 1)}
+          next={() => {setPage(page + 1); console.log("page", page)}}
           refreshFunction={() => console.log("1")}
-          hasMore={dataProducts?.data.data.length > products?.length}
+          hasMore={dataProducts?.data.data.length > 0}
           loader={
             <Row justify="center">
               <Col sm={7} xs={5} lg={3}>
