@@ -4,6 +4,7 @@ import {
   Loading,
   TitleTwo,
   CopyableText,
+  CopyAllCodes,
   Back,
 } from "../../components";
 import { useContextTranslate } from "../../Context/ContextAPI";
@@ -13,6 +14,30 @@ import { useEffect, useRef, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { FaRegCopy } from "react-icons/fa";
 
+// Automated (number 6) packages define their own requirement fields, so the
+// order carries them as a flat {name: value} map (`order_fields`) rather than
+// fixed columns. Keys are the provider's raw field names, so tidy them up for
+// display only -- Arabic names are left untouched.
+const humanizeFieldName = (name = "") =>
+  name
+    .replace(/[_-]+/g, " ")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b[a-z]/g, (c) => c.toUpperCase());
+
+const parseOrderFields = (raw) => {
+  if (!raw) return [];
+  try {
+    const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
+    return Object.entries(parsed).filter(
+      ([, value]) => value !== null && value !== ""
+    );
+  } catch {
+    return [];
+  }
+};
+
 const Request = () => {
   const { content } = useContextTranslate();
   const { id } = useParams();
@@ -20,6 +45,7 @@ const Request = () => {
     `orders/${id}?local=${localStorage.getItem("language")}`
   );
   const dataAll = data?.data.data;
+  const orderFields = parseOrderFields(dataAll?.order_fields);
   const [copys, setCopy] = useState(false);
   const text = useRef();
   useEffect(() => {
@@ -27,15 +53,29 @@ const Request = () => {
   }, [copys]);
   console.log({ dataAll });
 
-  const renderCodes = () => {
-    var codes = dataAll?.item_codes;
-
-    console.log({ codes });
-    if (codes) {
-      codes = JSON.parse(codes);
+  // item_codes is a JSON-string of [{code: "..."}]. Parsed defensively so a
+  // malformed value can't throw inside render, and so the "copy all" button
+  // gets the whole list rather than one line at a time.
+  const parseItemCodes = (raw) => {
+    if (!raw) return [];
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [parsed];
+    } catch (error) {
+      return [{ code: String(raw) }];
     }
-    console.log({ codes });
-    return codes.map((item, index) => <CopyableText text={item?.code} />);
+  };
+
+  const renderCodes = () => {
+    const codes = parseItemCodes(dataAll?.item_codes);
+    return (
+      <>
+        <CopyAllCodes codes={codes} label={content.copyAll} />
+        {codes.map((item, index) => (
+          <CopyableText key={index} text={item?.code} />
+        ))}
+      </>
+    );
   };
   useEffect(() => {
     const fetchDataInterval = setInterval(async () => {
@@ -262,7 +302,7 @@ const Request = () => {
                         </Col>
                       )}
 
-                    {dataAll?.q && (
+                    {dataAll?.expiry_date && (
                       <Col>
                         <div className="flex gap-2 mb-2">
                           <div className="font-semibold text-Pink">
@@ -316,6 +356,18 @@ const Request = () => {
                         </div>
                       </Col>
                     )}
+                    {orderFields.map(([name, value]) => (
+                      <Col key={name}>
+                        <div className="flex gap-2 mb-2">
+                          <div className="font-semibold text-Pink">
+                            {humanizeFieldName(name)} :
+                          </div>
+                          <div className="font-semibold break-all">
+                            {String(value)}
+                          </div>
+                        </div>
+                      </Col>
+                    ))}
                     <Col>
                       <div className="flex gap-2 mb-2">
                         <div className="font-semibold text-Pink">

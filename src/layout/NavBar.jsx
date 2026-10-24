@@ -33,9 +33,9 @@ const NavBar = () => {
       <nav className="shadow-md sticky top-0 left-0 z-30 w-full bg-white max-sm:hidden py-2">
         <Container>
           <div className="flex justify-between items-center gap-2 ">
-            <Link to="/" className=" max-md:py-2 max-sm:order-1">
+            <Link to="/" className=" max-md:py-2 max-sm:order-1 shrink-0">
               {/* <img src={logo} alt="" width={75} /> */}
-              <img className="site-logo header-logo"  alt="Logo" width={85}  />
+              <img className="site-logo header-logo max-w-none"  alt="Logo" width={85}  />
             </Link>
             <Search />
             <div className="max-md:order-3 ">
@@ -214,7 +214,7 @@ const NavBar = () => {
             </Col>
             <Col sm={5}>
               <Link to="/" className="">
-                <img alt="" width={75} className="mx-auto site-logo mobile-logo" />
+                <img alt="" width={75} className="mx-auto site-logo mobile-logo max-w-none" />
               </Link>
             </Col>
             <Col sm={5}>

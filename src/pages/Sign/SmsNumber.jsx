@@ -25,6 +25,7 @@ const SmsNumber = ({ sign }) => {
           phone_number: sessionStorage.getItem("phone_number"),
           password: sessionStorage.getItem("password"),
           email: sessionStorage.getItem("email"),
+          pin_code: sessionStorage.getItem("pin_code"),
           [sessionStorage.getItem("fcm_token") ? "fcm_token" : ""]:
             sessionStorage.getItem("fcm_token")
               ? sessionStorage.getItem("fcm_token")
@@ -48,6 +49,7 @@ const SmsNumber = ({ sign }) => {
           phone_number: sessionStorage.getItem("phone_number"),
           password: sessionStorage.getItem("password"),
           email: sessionStorage.getItem("email"),
+          pin_code: sessionStorage.getItem("pin_code"),
         })
       : setFormDataNumber({
           username: sessionStorage.getItem("username"),

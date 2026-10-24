@@ -62,6 +62,7 @@ export const useLOGIN = (initialState) => {
                 setLoading(false);
                 setError("");
                 localStorage.setItem("token", req.data.data.token);
+                sessionStorage.removeItem("pin_verified");
                 navigate("/");
             })
             .catch((e) => {
@@ -257,6 +258,7 @@ export const logout = (url) => {
         )
         .then((req) => {
             localStorage.removeItem("token");
+            sessionStorage.removeItem("pin_verified");
             window.location.reload();
         })
         .catch((e) => {});

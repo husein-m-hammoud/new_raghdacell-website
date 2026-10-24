@@ -34,7 +34,13 @@ import {
   Search,
   SmsNumber,
   GroupProducts,
+  SetPin,
+  VerifyPin,
+  ChangePin,
+  ForgetPin,
+  ResetPin,
 } from "./pages/index";
+import PinGate from "./components/PinGate";
 import Navbar2 from "./layout/Navbar2";
 import { BsWhatsapp } from "react-icons/bs";
 import { RequireAuth, useFETCH } from "./Tools/APIs";
@@ -64,9 +70,11 @@ const App = () => {
           el.src = websiteInfo.logo_url;
           if (websiteInfo.logo_width && el.classList.contains("header-logo")) {
             el.style.width = websiteInfo.logo_width;
+            el.style.maxWidth = "none";
           }
           if (websiteInfo.logo_mobile_width && el.classList.contains("mobile-logo")) {
             el.style.width = websiteInfo.logo_mobile_width;
+            el.style.maxWidth = "none";
           }
         });
       }
@@ -233,52 +241,60 @@ const App = () => {
       </div>
       <div className="bg">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about-us" element={<AboutUs />} />
-          <Route element={<RequireAuth />}>
-            <Route path="products">
-              <Route index element={<Products />} />
-              <Route path="products-1/:id" element={<ProductsOne />} />
-              <Route
-                path="products-1/packages/:id"
-                element={<SecProductsOne2 />}
-              />
-              <Route path="products-2/:id" element={<ProductsTwo />} />
-              <Route path="products-3/:id" element={<ProductsThree />} />
-              <Route path="products-4/:id" element={<ProductsFour />} />
-              <Route path="products-5/:id" element={<ProductsFive />} />
-              <Route path="products-6/:id" element={<ApiProducts />} />
-              <Route path="products-7/:id" element={<GroupProducts />} />
+          <Route element={<PinGate />}>
+            <Route path="/" element={<Home />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route element={<RequireAuth />}>
+              <Route path="products">
+                <Route index element={<Products />} />
+                <Route path="products-1/:id" element={<ProductsOne />} />
+                <Route
+                  path="products-1/packages/:id"
+                  element={<SecProductsOne2 />}
+                />
+                <Route path="products-2/:id" element={<ProductsTwo />} />
+                <Route path="products-3/:id" element={<ProductsThree />} />
+                <Route path="products-4/:id" element={<ProductsFour />} />
+                <Route path="products-5/:id" element={<ProductsFive />} />
+                <Route path="products-6/:id" element={<ApiProducts />} />
+                <Route path="products-7/:id" element={<GroupProducts />} />
 
-              <Route
-                path="products-6/packages/:id"
-                element={<ApiProductsPackage />}
-              />
+                <Route
+                  path="products-6/packages/:id"
+                  element={<ApiProductsPackage />}
+                />
+              </Route>
             </Route>
+            <Route path="Contact-us" element={<Contact />} />
+            <Route path="wallet">
+              <Route index element={<Wallet />} />
+              <Route path=":id" element={<Wallet2 />} />
+            </Route>
+            <Route path="Orders">
+              <Route index element={<Requests />} />
+              <Route path=":id" element={<Request />} />
+            </Route>
+            <Route path="shipping-payments">
+              <Route index element={<ShippingPayments />} />
+              <Route path=":id" element={<ShippingPayments2 />} />
+            </Route>
+            <Route path="charging-the-wallet" element={<ChargingWallet />} />
+            <Route path="search" element={<Search />} />
+            <Route path="change-pin" element={<ChangePin />} />
+            <Route path="Notifications" element={<Notifications />} />
           </Route>
-          <Route path="Contact-us" element={<Contact />} />
-          <Route path="wallet">
-            <Route index element={<Wallet />} />
-            <Route path=":id" element={<Wallet2 />} />
-          </Route>
-          <Route path="Orders">
-            <Route index element={<Requests />} />
-            <Route path=":id" element={<Request />} />
-          </Route>
-          <Route path="shipping-payments">
-            <Route index element={<ShippingPayments />} />
-            <Route path=":id" element={<ShippingPayments2 />} />
-          </Route>
-          <Route path="charging-the-wallet" element={<ChargingWallet />} />
-          <Route path="search" element={<Search />} />
           <Route path="sign-in" element={<Sign />} />
-          <Route path="sign-in/code" element={<SmsNumber sign={true} />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="sign-up/code" element={<SmsNumber />} />
           <Route path="verification-code" element={<Code />} />
           <Route path="set-password" element={<SetPassword />} />
           <Route path="forget-password" element={<ForgetPassword />} />
-          <Route path="Notifications" element={<Notifications />} />
+          <Route element={<RequireAuth />}>
+            <Route path="set-pin" element={<SetPin />} />
+            <Route path="verify-pin" element={<VerifyPin />} />
+            <Route path="forget-pin" element={<ForgetPin />} />
+            <Route path="reset-pin" element={<ResetPin />} />
+          </Route>
         </Routes>
       </div>
       <Footer />

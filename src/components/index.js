@@ -12,6 +12,7 @@ export { default as DateFilter } from "./DateFilter/DateFilter";
 export { default as EnterHandler } from "./EnterHandler/EnterHandler";
 export { default as Currency } from "./Currency/Currency";
 export { default as CopyableText } from "./ApiProducts/CopyableText";
+export { default as CopyAllCodes } from "./ApiProducts/CopyAllCodes";
 export { default as Back } from "./Buttons/Back";
 export { default as UnavvailablePopup } from "./ApiProducts/UnavvailablePopup";
 export { default as TokenModal} from "./PopUp/TokenModal";

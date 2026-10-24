@@ -151,7 +151,8 @@
         "Close": "Close",
         "Done": "Done",
         "DirectRecharge": "Direct Recharge",
-        "Email": "Email"
+        "Email": "Email",
+        "copyAll": "Copy all"
     },
     "ar": {
         "Yes": "نعم",
@@ -305,6 +306,7 @@
         "Close": "إغلاق",
         "Done": "تم",
         "DirectRecharge": "شحن مباشرة",
-        "Email": "البريد الإلكتروني"
+        "Email": "البريد الإلكتروني",
+        "copyAll": "نسخ الكل"
     }
 }

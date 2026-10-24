@@ -5,7 +5,8 @@ import {
   FilterOrderStatus,
   Loading,
   TitleTwo,
-  CopyableText
+  CopyableText,
+  CopyAllCodes
 } from "../../components";
 import { useContextTranslate } from "../../Context/ContextAPI";
 import { BiShow } from "react-icons/bi";
@@ -55,17 +56,30 @@ const Orders = () => {
   }, [prevUrl]); // Empty dependency array ensures useEffect runs only once
 
 
-  const renderCodes = (codes) =>{
-    console.log({ codes });
-    if(codes) {
-      codes = JSON.parse(codes)
+  // item_codes is a JSON-string of [{code: "..."}]. Parsed defensively so a
+  // malformed value can't throw inside render, and so the "copy all" button
+  // gets the whole list rather than one line at a time.
+  const parseItemCodes = (raw) => {
+    if (!raw) return [];
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [parsed];
+    } catch (error) {
+      return [{ code: String(raw) }];
     }
-    console.log({ codes });
-    return codes.map((item, index) => (
-  
-     <CopyableText text={item?.code} />  
-    ));
-   }
+  };
+
+  const renderCodes = (raw) => {
+    const codes = parseItemCodes(raw);
+    return (
+      <>
+        <CopyAllCodes codes={codes} label={content.copyAll} className="mx-auto" />
+        {codes.map((item, index) => (
+          <CopyableText key={index} text={item?.code} />
+        ))}
+      </>
+    );
+  };
   return (
     <section className="py-4">
       <Container>

@@ -57,11 +57,25 @@ const ChargingWallet = () => {
     setFormData({ ...formData, name: active });
   }, [active]);
 
+  // Pick the first actually-available payment method (in UI order) whenever the
+  // payment info or currency changes. Prevents defaulting to USDT (and rendering
+  // "Recharge with USDT") when no USDT wallet is configured.
   useEffect(() => {
-    if (profile?.currency !== "USD") {
-      setActive("WHISH_MONEY");
+    if (!dataAll) return;
+    const usdtAvailable =
+      profile?.currency === "USD" &&
+      (dataAll?.usdt_trc20 || dataAll?.usdt_bep20);
+    const available = [
+      usdtAvailable && "USDT",
+      dataAll?.whish_money_text && "WHISH_MONEY",
+      dataAll?.omt_pay_text && "OMT_PAY",
+      "PROMO_CODE",
+    ].filter(Boolean);
+    if (!available.includes(active)) {
+      setActive(available[0]);
     }
-  }, [profile?.currency]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataAll, profile?.currency]);
 
   const handleCopy = (refKey) => {
     let ref = {
@@ -125,7 +139,8 @@ const ChargingWallet = () => {
             />
           </Row>
 
-          {active === "USDT" ? (
+          {active === "USDT" &&
+          (dataAll?.usdt_trc20 || dataAll?.usdt_bep20) ? (
             <div className="space-y-5">
               <USDTRecharge dataAll={dataAll} />
             </div>

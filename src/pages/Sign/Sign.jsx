@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContextTranslate } from "../../Context/ContextAPI";
 import Img from "../../images/IMG-20230702-WA0052-removebg.png";
-import { usePOST } from "../../Tools/APIs";
+import { useLOGIN } from "../../Tools/APIs";
 import Loading from "../../Tools/Loading";
 import { useEffect, useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
@@ -11,12 +11,17 @@ const Sign = () => {
   const { content } = useContextTranslate();
   const [replaceInput, setReplaceInput] = useState(false);
   const [biShow, setBiShow] = useState(false);
-  const { handleSubmit, error, loading, setFormData, formData, setError } =
-    usePOST();
+  const { handleSubmit, error, loading, setFormData, formData } = useLOGIN({});
+  const [localError, setLocalError] = useState("");
   useEffect(() => {
     sessionStorage.removeItem("username");
     sessionStorage.removeItem("password");
     sessionStorage.removeItem("phone_number");
+    setFormData({
+      ...formData,
+      fcm_token: sessionStorage.getItem("fcm_token") || undefined,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleSubmitMain = (e) => {
     e.preventDefault();
@@ -24,17 +29,15 @@ const Sign = () => {
     const password = sessionStorage.getItem("password");
     const phoneNumber = sessionStorage.getItem("phone_number");
     if (!username && !phoneNumber) {
-      setError("Username or Phone Number field is required");
+      setLocalError("Username or Phone Number field is required");
       return;
     }
     if (!password || password.length < 8) {
-      setError("Password must be at least 8 characters long");
+      setLocalError("Password must be at least 8 characters long");
       return;
     }
-    handleSubmit(
-      `login?check=1&local=${localStorage.getItem("language")}`,
-      "/sign-in/code"
-    );
+    setLocalError("");
+    handleSubmit(`login?local=${localStorage.getItem("language")}`);
   };
   document.onkeyup = function (e) {
     if (e.key === "Enter") {
@@ -148,7 +151,7 @@ const Sign = () => {
               </Link>
             </div>
             {loading ? <Loading /> : ""}
-            <div className="text-red-600">{error}</div>
+            <div className="text-red-600">{localError || error}</div>
             <button
               className="w-3/4 mx-auto py-3 bg-Pink text-white hover:bg-opacity-70 text-xl rounded-2xl"
               onClick={handleSubmitMain}
