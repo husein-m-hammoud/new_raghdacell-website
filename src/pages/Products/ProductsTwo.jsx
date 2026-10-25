@@ -7,7 +7,7 @@ import {
   PopUp,
   TitleTwo,
 } from "../../components";
-import { fileUrl, useFETCH, usePOST } from "../../Tools/APIs";
+import { fileUrl, useFETCH, usePOST, productImage } from "../../Tools/APIs";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { calculatePrice } from "../../utils/utils";
@@ -84,7 +84,7 @@ const ProductsTwo = () => {
           <div className="flex justify-center gap-6 max-sm:flex-wrap">
             <div className="w-1/2 max-md:w-full">
               <img
-                src={fileUrl + dataAll?.image}
+                src={productImage(dataAll)}
                 alt=""
                 className="w-full object-cover rounded-3xl"
               />

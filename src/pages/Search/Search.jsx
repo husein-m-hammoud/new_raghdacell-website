@@ -1,6 +1,6 @@
 import { Col, Row } from "../../Grid-system";
 import { CardProducts, Container, LoadingProducts } from "../../components";
-import { useFETCH, useFilter, fileUrl } from "../../Tools/APIs";
+import { useFETCH, useFilter, fileUrl, productImage } from "../../Tools/APIs";
 import { useContextTranslate } from "../../Context/ContextAPI";
 
 function Search() {
@@ -56,7 +56,7 @@ function Search() {
                   link={`${
                     e.available ? `/products/products-${e.number}/${e.id}` : ""
                   }`}
-                  image={fileUrl + e.image}
+                  image={productImage(e)}
                   title={e.name}
                   active={e.available ? `` : `${content.unAvailable}`}
                   bg={e.available ? `` : `bg-black/10`}

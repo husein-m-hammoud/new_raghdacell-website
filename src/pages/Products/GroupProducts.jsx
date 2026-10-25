@@ -3,7 +3,7 @@ import Products from "./Products";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Col, Row } from "../../Grid-system";
 import { CardProducts, Container, LoadingProducts,TitleTwo ,Loading} from "../../components";
-import { fileUrl, useFETCH } from "../../Tools/APIs";
+import { fileUrl, useFETCH, productImage } from "../../Tools/APIs";
 import { useContextTranslate } from "../../Context/ContextAPI";
 
 import { useParams } from "react-router-dom";
@@ -39,7 +39,7 @@ const GroupProducts = () => {
                   link={`${
                     e.available ? `/products/products-${e.number}/${e.id}` : ""
                   }`}
-                  image={fileUrl + e.image}
+                  image={productImage(e)}
                   title={e.name}
                   active={e.available ? `` : `${content.unAvailable}`}
                   bg={e.available ? `` : `bg-black/10`}

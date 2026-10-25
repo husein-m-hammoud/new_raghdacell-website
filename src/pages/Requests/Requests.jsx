@@ -11,7 +11,7 @@ import {
 import { useContextTranslate } from "../../Context/ContextAPI";
 import { BiShow } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { fileUrl, useFETCH, useFilter, checkOrderStatus } from "../../Tools/APIs";
+import { fileUrl, useFETCH, useFilter, checkOrderStatus, productImage } from "../../Tools/APIs";
 import Pagination from "../../Tools/Pagination";
 import React, { useEffect } from "react";
 
@@ -116,7 +116,7 @@ const Orders = () => {
                       <td>
                         <div className="w-[60px] h-[60px] mx-auto ">
                           <img
-                            src={fileUrl + e.product_image}
+                            src={productImage(e, "product_image")}
                             alt=""
                             className="w-full h-full rounded-full"
                           />

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { useContextTranslate } from "../../Context/ContextAPI";
 import { Col, Row } from "../../Grid-system";
-import { fileUrl } from "../../Tools/APIs";
+import { fileUrl, productImage } from "../../Tools/APIs";
 import {
   CardProducts,
   Container,
@@ -68,7 +68,7 @@ const Products = () => {
                   link={`${
                     e.available ? `/products/products-${e.number}/${e.id}` : ""
                   }`}
-                  image={fileUrl + e.image}
+                  image={productImage(e)}
                   title={e.name}
                   active={e.available ? `` : `${content.unAvailable}`}
                   bg={e.available ? `` : `bg-black/10`}

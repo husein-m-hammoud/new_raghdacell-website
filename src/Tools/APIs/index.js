@@ -20,6 +20,24 @@ const hostname = window.location.hostname;
 export const baseUrl = hostname == 'localhost' ? `http://localhost:8000/api/` : `https://backend.${hostname}/api/`;
 export const localFileUrl = hostname == 'localhost' ? `http://localhost:8000/storage/` : `https://backend.${hostname}/storage/`;
 
+/**
+ * URL for a product picture, given the API row that carries it.
+ *
+ * A picture is normally the parent's, served from the parent's storage; when
+ * this site has uploaded its own it lives on THIS site's storage instead. The
+ * path alone does not say which, so the API supplies <field>_url already
+ * resolved -- only the backend knows where its parent is.
+ *
+ * The fileUrl fallback is for an older backend that sends no _url yet.
+ */
+export const productImage = (item, field = "image") => {
+    const url = item?.[`${field}_url`];
+    if (url) return url;
+
+    const base = item?.[`${field}_is_local`] ? localFileUrl : fileUrl;
+    return base + (item?.[field] || "");
+};
+
 // export const baseUrl = "https://backend.raghdacell.com/api/";
 // export const localFileUrl = "https://backend.raghdacell.com/storage/";
 

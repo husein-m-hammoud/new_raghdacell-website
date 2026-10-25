@@ -9,7 +9,7 @@ import {
 } from "../../components";
 import { useContextTranslate } from "../../Context/ContextAPI";
 import { Col, Container, Row } from "../../Grid-system";
-import { fileUrl, useFETCH, checkOrderStatus } from "../../Tools/APIs";
+import { fileUrl, useFETCH, checkOrderStatus, productImage } from "../../Tools/APIs";
 import { useEffect, useRef, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { FaRegCopy } from "react-icons/fa";
@@ -106,7 +106,7 @@ const Request = () => {
             <Row className="p-5">
               <Col md={8}>
                 <img
-                  src={fileUrl + dataAll?.product_image}
+                  src={productImage(dataAll, "product_image")}
                   alt=""
                   className="rounded-2xl h-[260px] object-contain mx-auto"
                 />

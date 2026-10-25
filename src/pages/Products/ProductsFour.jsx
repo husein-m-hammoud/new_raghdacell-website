@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useContextTranslate } from "../../Context/ContextAPI";
-import { fileUrl, useFETCH, usePOST } from "../../Tools/APIs";
+import { fileUrl, useFETCH, usePOST, productImage } from "../../Tools/APIs";
 import {
   Container,
   Currency,
@@ -71,7 +71,7 @@ const ProductsFour = () => {
           <div className="flex justify-center gap-6 max-sm:flex-wrap">
             <div className="w-1/2 max-md:w-full">
               <img
-                src={fileUrl + dataAll?.image}
+                src={productImage(dataAll)}
                 alt=""
                 className="w-full object-cover rounded-3xl"
               />
