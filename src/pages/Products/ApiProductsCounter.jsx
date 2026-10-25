@@ -12,7 +12,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { calculatePrice } from "../../utils/utils";
 
-import { fileUrl, useFETCH, usePOST } from "../../Tools/APIs";
+import { fileUrl, useFETCH, usePOST, productImage } from "../../Tools/APIs";
 import { useEffect, useState } from "react";
 
 const ApiProductsCounter = ({ data, dataPackages }) => {
@@ -236,7 +236,7 @@ const ApiProductsCounter = ({ data, dataPackages }) => {
           <div className="flex justify-center gap-6 max-sm:flex-wrap">
             <div className="w-1/2 max-md:w-full">
               <img
-                src={fileUrl + dataAll?.image}
+                src={productImage(dataAll?.image, dataAll?.image_is_local)}
                 alt=""
                 className="w-full object-cover rounded-3xl"
               />

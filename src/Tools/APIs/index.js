@@ -20,6 +20,17 @@ const hostname = window.location.hostname;
 export const baseUrl = hostname == 'localhost' ? `http://localhost:8000/api/` : `https://backend.${hostname}/api/`;
 export const localFileUrl = hostname == 'localhost' ? `http://localhost:8000/storage/` : `https://backend.${hostname}/storage/`;
 
+/**
+ * URL for a product picture.
+ *
+ * Most products use the parent's picture, served from its storage (fileUrl).
+ * When this site has uploaded its own, the file lives on THIS site's storage
+ * instead (localFileUrl) and the API marks the row with image_is_local -- the
+ * path alone does not say which server holds it, so the flag decides.
+ */
+export const productImage = (path, isLocal) =>
+    (isLocal ? localFileUrl : fileUrl) + (path || "");
+
 // export const baseUrl = "https://backend.raghdacell.com/api/";
 // export const localFileUrl = "https://backend.raghdacell.com/storage/";
 
