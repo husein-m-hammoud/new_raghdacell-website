@@ -106,7 +106,7 @@ const Request = () => {
             <Row className="p-5">
               <Col md={8}>
                 <img
-                  src={productImage(dataAll?.product_image, dataAll?.product_image_is_local)}
+                  src={productImage(dataAll, "product_image")}
                   alt=""
                   className="rounded-2xl h-[260px] object-contain mx-auto"
                 />

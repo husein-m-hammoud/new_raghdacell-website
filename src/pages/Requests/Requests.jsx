@@ -116,7 +116,7 @@ const Orders = () => {
                       <td>
                         <div className="w-[60px] h-[60px] mx-auto ">
                           <img
-                            src={productImage(e.product_image, e.product_image_is_local)}
+                            src={productImage(e, "product_image")}
                             alt=""
                             className="w-full h-full rounded-full"
                           />

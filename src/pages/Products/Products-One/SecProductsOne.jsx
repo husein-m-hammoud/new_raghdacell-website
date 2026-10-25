@@ -58,7 +58,7 @@ const SecProductsOne = ({ number = 1 }) => {
               e.merge_to ? (
                 <Col sm={7} xs={5} lg={3} key={e.id}>
                   <CardProducts
-                    image={productImage(e.image, e.image_is_local)}
+                    image={productImage(e)}
                     link={
                       e.available
                         ? `/products/products-${e.number}/${e.id}`
@@ -72,7 +72,7 @@ const SecProductsOne = ({ number = 1 }) => {
               ) : (
                 <Col sm={7} xs={5} lg={3} key={e.id}>
                   <CardProducts
-                    image={productImage(e.image, e.image_is_local)}
+                    image={productImage(e)}
                     link={
                       e.is_available
                         ? `/products/products-${e.number}/packages/${e.id}`

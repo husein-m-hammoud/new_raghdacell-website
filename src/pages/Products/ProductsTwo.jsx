@@ -84,7 +84,7 @@ const ProductsTwo = () => {
           <div className="flex justify-center gap-6 max-sm:flex-wrap">
             <div className="w-1/2 max-md:w-full">
               <img
-                src={productImage(dataAll?.image, dataAll?.image_is_local)}
+                src={productImage(dataAll)}
                 alt=""
                 className="w-full object-cover rounded-3xl"
               />

@@ -79,7 +79,7 @@ const MyComponent = () => {
                 link={`${
                   e.available ? `/products/products-${e.number}/${e.id}` : ""
                 }`}
-                image={productImage(e.image, e.image_is_local)}
+                image={productImage(e)}
                 title={e.name}
                 active={e.available ? `` : `${content.unAvailable}`}
                 bg={e.available ? `` : `bg-black/10`}
